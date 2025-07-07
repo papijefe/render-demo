@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heart Health Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Healththink</h2>
+        <ul>
+            <li class="active">Dashboard</li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <div class="top-bar">
+            <h1>Good Morning, Yash</h1>
+            <p>You have 3 appointments today</p>
+        </div>
+
+        <div class="dashboard">
+            <div class="heart-section">
+                <img src="{{ url_for('static', filename='images/heart-dashboard.png') }}" alt="Heart Image" />
+                <div class="stat-box">
+                    <h4>Heart Rate</h4>
+                    <p>120 bpm</p>
+                </div>
+            </div>
+
+            <div class="prediction-box">
+                <form method="POST" action="/predict">
+                    <h3>Heart Disease Prediction</h3>
+                    <input type="number" name="age" placeholder="Age" required>
+                    <input type="number" name="sex" placeholder="Sex (1=Male, 0=Female)" required>
+                    <input type="number" name="cp" placeholder="Chest Pain Type (0–3)" required>
+                    <input type="number" name="trestbps" placeholder="Resting Blood Pressure" required>
+                    <input type="number" name="chol" placeholder="Cholesterol (mg/dl)" required>
+                    <input type="number" name="fbs" placeholder="Fasting Blood Sugar (1/0)" required>
+                    <input type="number" name="restecg" placeholder="Rest ECG (0–2)" required>
+                    <input type="number" name="thalach" placeholder="Max Heart Rate" required>
+                    <input type="number" name="exang" placeholder="Exercise Induced Angina (1/0)" required>
+                    <input type="number" name="oldpeak" step="any" placeholder="Oldpeak (float)" required>
+                    <input type="number" name="slope" placeholder="Slope of ST (0–2)" required>
+                    <input type="number" name="ca" placeholder="Major Vessels (0–3)" required>
+                    <input type="number" name="thal" placeholder="Thal (1=Normal, 2=Fixed, 3=Reversible)" required>
+
+                    <button type="submit">Predict</button>
+
+                    {% if prediction_text %}
+                        <p class="result">{{ prediction_text }}</p>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
