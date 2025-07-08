@@ -1,7 +1,8 @@
 services:
   - type: web
     name: render-demo
-    env: python
-    buildCommand: pip install -r requirements.txt
+    runtime: python
+    build:
+      pythonVersion: 3.10
+      buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
-    pythonVersion: 3.10
